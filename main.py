@@ -1,4 +1,5 @@
 import pygame
+import random
 
 pygame.init()
 
@@ -51,6 +52,17 @@ def main():
                     positions.remove(pos)
                 else:
                     positions.add(pos)
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    playing = not playing
+                
+                if event.key == pygame.K_c: #clear position
+                    positions = set()
+                    playing = False
+
+
+
 
         screen.fill(GREY)            
         draw_grid(positions)
