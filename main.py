@@ -17,6 +17,10 @@ screen = pygame.display.set_mode((WIDTH,HEIGHT))
 
 clock = pygame.time.Clock()
 
+def generate(num):
+    return set([(random.randrange(0, GRID_HEIGHT), random.randrange(0,GRID_WIDTH)) for _ in range(num)])
+
+
 def draw_grid(positions):
     for position in positions:
         column, row = position
@@ -61,7 +65,9 @@ def main():
                     positions = set()
                     playing = False
 
-
+                if event.key == pygame.K_r: #random position generating
+                    positions = generate(random.randrange(2,5) * GRID_WIDTH)
+                    playing = False
 
 
         screen.fill(GREY)            
