@@ -56,7 +56,20 @@ def update_grid(positions):
     return new_positions
 
 def get_neighbours(position):
-    pass
+    x, y = position
+    neighbours = []
+    for dx in [-1, 0, 1]: #displacement in x
+        if x + dx < 0 or x + dx > GRID_WIDTH: # borders
+            continue
+        for dy in [-1, 0, 1]: #displacement in y
+            if y + dy < 0 or y + dy > GRID_HEIGHT: # borders
+                continue
+            if dx == 0 and dy == 0:
+                continue
+
+            neighbours.append((x + dx, y + dy))
+
+    return neighbours
 
 def main():
     running = True
