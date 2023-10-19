@@ -34,21 +34,21 @@ def draw_grid(positions):
         pygame.draw.line(screen, BLACK,(column * TILE_SIZE, 0),(column * TILE_SIZE, HEIGHT))
 
 def update_grid(positions):
-    all_neighbours = set() 
-    new_positions = set() 
+    all_neighbours = set() #neighbours of alive cells in current set
+    new_positions = set() # new set after update 
 
-    for position in positions:
+    for position in positions: # positions of live cells
         neighbours = get_neighbours(position)
         all_neighbours.update(neighbours)
 
-        neighbours = list(filter(lambda x:x in positions, neighbours))
+        neighbours = list(filter(lambda x:x in positions, neighbours)) # filter neighbours to only alive cells
 
         if len(neighbours) in [2,3]:
             new_positions.add(position)
     
-    for position in all_neighbours:
+    for position in all_neighbours: # all neighbours of alive cells
         neighbours = get_neighbours(position)
-        neighbours = list(filter(lambda x:x in positions, neighbours))
+        neighbours = list(filter(lambda x:x in positions, neighbours)) #filter neighbours' alive neighbours
 
         if len(neighbours) == 3:
             new_positions.add(position)
