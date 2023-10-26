@@ -1,3 +1,4 @@
+import numpy as np
 import pygame
 import random
 
@@ -71,11 +72,22 @@ def get_neighbours(position):
 
     return neighbours
 
+def load_board(filename):
+    with open(filename, 'r') as file:
+        lines = file.readlines() # Usunięcie białych znaków i zamiana na listę list
+        return [[int(char) for char in line.strip()] for line in lines]
+
+
+
+
 def main():
     running = True
     playing = False
     count = 0 
     update_frequency = 120 # 2s
+
+    #filename = 'to_be_done.txt'  
+    #grid = np.array(load_board(filename), dtype=int)
 
     positions =set()
     positions.add((15,15))
